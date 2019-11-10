@@ -78,19 +78,22 @@ struct appdata
 {
 	float4 vertex : POSITION;
 	float4 uv : TEXCOORD0;
+	float4 uv1 : TEXCOORD1;
 };
 
 struct v2f
 {
 	float4 pos : SV_POSITION;
 	float4 uv : TEXCOORD0;
+	float4 uv1 : TEXCOORD1;
 };
 
 v2f vert(appdata v)
 {
 	v2f o;
 	o.pos = v.vertex;
-	o.uv = v.uv;
+	o.uv = UnityStereoTransformScreenSpaceTex(v.uv);
+	o.uv1 = (v.uv);
 	return o;
 }
 
